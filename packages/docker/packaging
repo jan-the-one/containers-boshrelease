@@ -4,20 +4,20 @@ set -eu
 CPUS=$(grep -c ^processor /proc/cpuinfo)
 
 # docker: https://download.docker.com/linux/static/stable/x86_64/docker-20.10.16.tgz
-tar -xzf docker/docker-20.10.16.tgz
+tar -xzf docker/docker-27.3.1.tgz
 mkdir -p ${BOSH_INSTALL_TARGET}/bin
 cp docker/* ${BOSH_INSTALL_TARGET}/bin
 
 # git: https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.36.1.tar.gz
-tar -xzf docker/git-2.36.1.tar.gz
-pushd git-2.36.1 >/dev/null 2>&1
+tar -xzf docker/git-2.47.0.tar.gz
+pushd git-2.47.0 >/dev/null 2>&1 #TODO keep version in a constant
 ./configure --prefix=${BOSH_INSTALL_TARGET}
 make -j$CPUS all
 make install
 popd >/dev/null 2>&1
 
 # docker-compose: https://github.com/docker/compose/releases/download/v2.5.1/docker-compose-linux-x86_64
-cp docker/docker-compose ${BOSH_INSTALL_TARGET}/bin/docker-compose-real
+cp docker/docker-compose-linux-x86_64 ${BOSH_INSTALL_TARGET}/bin/docker-compose-real
 cat >${BOSH_INSTALL_TARGET}/bin/docker-compose <<'EOF'
 #!/bin/sh
 export TMPDIR=/var/vcap/data/tmp

@@ -1,6 +1,6 @@
 ---
 final_name: containers
 blobstore:
-  provider: s3
+  provider: local
   options:
-    bucket_name: containers-boshrelease
+    bucket_name: /tmp/containers-boshrelease

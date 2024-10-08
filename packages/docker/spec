@@ -2,7 +2,7 @@
 name: docker
 dependencies: []
 files:
-  - docker/docker-20.10.16.tgz
-  - docker/git-2.36.1.tar.gz
-  - docker/docker-compose
+  - docker/docker-27.3.1.tgz
+  - docker/git-2.47.0.tar.gz
+  - docker/docker-compose-linux-x86_64
   - ttar/ttar
